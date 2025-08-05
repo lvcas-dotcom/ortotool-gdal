@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import 'leaflet/dist/leaflet.css'
+import '../styles/leaflet-custom.css'
 
 export const metadata: Metadata = {
   title: '🛰️ ORTOTOOL',

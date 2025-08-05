@@ -82,3 +82,66 @@ export interface AppState {
   selectedFiles: string[]
   selectedOperation?: ProcessingOperation
 }
+
+// Tipos para Visualização
+export interface FileMetadata {
+  type: 'raster' | 'vector'
+  file_path: string
+  file_size: number
+  bounds: [number, number, number, number]
+  crs: string | null
+  
+  // Específico para raster
+  width?: number
+  height?: number
+  count?: number
+  resolution?: [number, number]
+  bands?: BandInfo[]
+  
+  // Específico para vetor
+  feature_count?: number
+  geometry_type?: string
+  columns?: string[]
+  column_types?: Record<string, string>
+}
+
+export interface BandInfo {
+  index: number
+  dtype: string
+  nodata: number | null
+  min?: number
+  max?: number
+  mean?: number
+  std?: number
+}
+
+export interface GeoJSONData {
+  type: 'FeatureCollection'
+  features: any[]
+  metadata?: {
+    original_feature_count: number
+    preview_feature_count: number
+    crs: string
+    bounds: [number, number, number, number]
+  }
+}
+
+export interface UploadedFileInfo {
+  name: string
+  path: string
+  size: number
+  extension: string
+  type: 'raster' | 'vector' | 'unknown'
+  modified: number
+}
+
+export interface LayerConfig {
+  id: string
+  name: string
+  type: 'raster' | 'vector'
+  visible: boolean
+  opacity: number
+  filePath: string
+  metadata?: FileMetadata
+  data?: any
+}

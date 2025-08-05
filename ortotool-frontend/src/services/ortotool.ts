@@ -84,6 +84,26 @@ export const downloadService = {
   },
 }
 
+// Serviços de Visualização
+export const visualizationService = {
+  async getFileMetadata(filePath: string): Promise<any> {
+    const response = await api.get(`/visualization/metadata/${filePath}`)
+    return response.data
+  },
+
+  async getFilePreview(filePath: string, format = 'geojson'): Promise<any> {
+    const response = await api.get(`/visualization/preview/${filePath}`, {
+      params: { format }
+    })
+    return response.data
+  },
+
+  async listUploadedFiles(): Promise<any[]> {
+    const response = await api.get('/visualization/files')
+    return response.data
+  },
+}
+
 // Serviços de Sistema
 export const systemService = {
   async getHealth(): Promise<ApiResponse<{ status: string; version: string }>> {

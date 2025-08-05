@@ -52,12 +52,13 @@ app.add_middleware(
 )
 
 # Incluir rotas
-from routers import upload, raster, jobs, download
+from routers import upload, raster, jobs, download, visualization
 
 app.include_router(upload.router, prefix="/api/v1", tags=["📤 Upload"])
 app.include_router(raster.router, prefix="/api/v1", tags=["🛰️ Processamento"])
 app.include_router(jobs.router, prefix="/api/v1", tags=["📊 Monitoramento"])
 app.include_router(download.router, prefix="/api/v1", tags=["📥 Download"])
+app.include_router(visualization.router, prefix="/api/v1", tags=["🗺️ Visualização"])
 
 @app.get("/", response_class=HTMLResponse)
 async def home():

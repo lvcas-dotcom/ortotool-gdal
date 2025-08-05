@@ -126,9 +126,9 @@ export default function JobTracker({ jobs, onJobsChange }: JobTrackerProps) {
           {jobs.length === 0 ? (
             <div className="text-center py-8">
               <Clock className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-500 dark:text-gray-400">
-                Nenhum processamento iniciado
-              </p>
+                              <p className="text-gray-500 dark:text-gray-400">
+                  Nenhum trabalho ativo. Comece processando alguns arquivos!
+                </p>
               <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
                 Execute uma operação na aba "Processar" para ver o progresso aqui
               </p>

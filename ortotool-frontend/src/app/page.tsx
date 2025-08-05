@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Upload, Map, Settings, Activity, Download } from 'lucide-react'
@@ -135,14 +136,31 @@ export default function HomePage() {
           {activeTab === 'map' && (
             <Card>
               <CardHeader>
-                <CardTitle>Visualização de Dados</CardTitle>
-                <CardDescription>
-                  Visualize seus arquivos geoespaciais no mapa interativo
-                </CardDescription>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Visualização de Dados</CardTitle>
+                    <CardDescription>
+                      Visualize seus arquivos geoespaciais no mapa interativo
+                    </CardDescription>
+                  </div>
+                  <Link href="/visualizacao">
+                    <Button>
+                      <Map className="w-4 h-4 mr-2" />
+                      Visualização Avançada
+                    </Button>
+                  </Link>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="h-[600px] w-full">
-                  <MapViewer files={uploadedFiles} />
+                  <MapViewer uploadedFiles={uploadedFiles.map(file => ({
+                    name: file.name,
+                    path: file.path,
+                    type: file.type,
+                    size: file.size,
+                    extension: file.name.split('.').pop() || '',
+                    modified: file.uploadedAt.getTime()
+                  }))} />
                 </div>
               </CardContent>
             </Card>
